@@ -25,7 +25,6 @@ const NAV_ITEMS = [
   { name: "Skills", href: "/skills", icon: Code },
   { name: "Services", href: "/services", icon: Layers },
   { name: "Projects", href: "/projects", icon: Palette },
-  { name: "Creative Works", href: "/creative-works", icon: Video },
   { name: "Experience", href: "/experience", icon: Briefcase },
   { name: "Contact", href: "/contact", icon: Mail },
 ];
@@ -54,11 +53,11 @@ export function Navbar() {
     >
       <div
         className={[
-          "glass mx-4 mt-2.5 rounded-3xl px-6 py-3 border border-white/10 backdrop-blur-md",
+          "glass mt-2.5 rounded-3xl py-3 border border-white/10 backdrop-blur-md",
           scrolled ? "shadow-lg shadow-black/30" : "shadow-sm",
         ].join(" ")}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
+        <div className="max-w-7xl ml-0 mr-auto w-full px-6 flex items-center justify-between gap-6">
           {/* Brand — flush left */}
           <div className="flex items-center gap-3 shrink-0">
             <Link
@@ -120,7 +119,7 @@ export function Navbar() {
           <div className="max-w-7xl mx-auto px-4 py-3 space-y-1">
             <div className="flex items-center justify-between px-2 mb-4 border-b border-white/5 pb-2">
               <span className="font-display font-bold text-lg tracking-tight text-white flex items-center gap-2">
-                <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white">AP</div>
+                <div className="w-[40px] h-[40px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white">AP</div>
                 AFIL<span className="text-blue-400">PM</span>
               </span>
               <Button

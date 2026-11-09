@@ -1,11 +1,12 @@
 // src/components/layout/footer.tsx
 import Link from "next/link";
-import { Mail, Phone, Link as LinkIcon, Github, Instagram } from "lucide-react";
+import { Mail, Phone, Link as LinkIcon, Github, Instagram, Linkedin } from "lucide-react";
 
 const SOCIALS = [
-  { label: "GitHub", href: "https://github.com", icon: Github },
-  { label: "Instagram", href: "https://instagram.com", icon: Instagram },
-  { label: "WhatsApp", href: "https://wa.me/1234567890", icon: Phone },
+  { label: "GitHub", href: "https://github.com/afil-pm", icon: Github },
+  { label: "Instagram", href: "https://instagram.com/afil_pm", icon: Instagram },
+  { label: "LinkedIn", href: "https://linkedin.com/in/afil-pm", icon: Linkedin },
+  { label: "WhatsApp", href: "https://wa.me/917561820814", icon: Phone },
 ];
 
 export default function Footer() {
@@ -49,14 +50,14 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-slate-500" />
-                <a href="mailto:hello@example.com" className="hover:text-white transition-colors">
-                  hello@example.com
+                <a href="mailto:info.afilpm@gmail.com" className="hover:text-white transition-colors">
+                  info.afilpm@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-slate-500" />
                 <a
-                  href="https://wa.me/1234567890"
+                  href="https://wa.me/917561820814"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"

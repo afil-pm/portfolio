@@ -53,11 +53,6 @@ const ROUTE_METADATA: Record<string, { title: string; description: string }> = {
     description:
       "Selected web development, full-stack, UI/UX, motion graphics, and video editing projects by AFIL PM.",
   },
-  "/creative-works": {
-    title: "Creative Works — AFIL PM",
-    description:
-      "Motion graphics and video editing gallery by AFIL PM — After Effects, Premiere Pro, and more.",
-  },
   "/experience": {
     title: "Experience — AFIL PM",
     description:

@@ -5,13 +5,14 @@ import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
-import { Mail, Phone, Link as LinkIcon, Github, ArrowRight } from "lucide-react";
+import { Mail, Phone, Link as LinkIcon, Github, Instagram, Linkedin, ArrowRight } from "lucide-react";
 
 const SOCIALS = [
-  { label: "Email", href: "mailto:hello@example.com", icon: Mail },
-  { label: "WhatsApp", href: "https://wa.me/1234567890", icon: Phone },
-  { label: "Portfolio", href: "/", icon: LinkIcon },
-  { label: "GitHub", href: "https://github.com", icon: Github },
+  { label: "Email", href: "mailto:info.afilpm@gmail.com", icon: Mail },
+  { label: "WhatsApp", href: "https://wa.me/917561820814", icon: Phone },
+  { label: "GitHub", href: "https://github.com/afil-pm", icon: Github },
+  { label: "Instagram", href: "https://instagram.com/afil_pm", icon: Instagram },
+  { label: "LinkedIn", href: "https://linkedin.com/in/afil-pm", icon: Linkedin },
 ];
 
 export function ContactForm() {
@@ -96,14 +97,14 @@ export function ContactForm() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all"
+                  className="group flex items-center gap-4 p-4 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center text-blue-500 bg-blue-500/10 group-hover:bg-blue-500 group-hover:text-white transition-colors">
                     <item.icon className="h-5 w-5" />
                   </div>
                   <div>
                     <span className="font-semibold text-slate-200 block">{item.label}</span>
-                    <span className="text-xs text-slate-500">{item.href}</span>
+                    <span className="text-xs text-slate-500 truncate">{item.href}</span>
                   </div>
                 </a>
               ))}
@@ -116,20 +117,22 @@ export function ContactForm() {
             onSubmit={handleSubmit}
             className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)]"
           >
-            <div className="grid md:grid-cols-2 gap-5">
-              <Field label="Full Name" id="name" type="text" error={errors.name} required />
-              <Field label="Email Address" id="email" type="email" error={errors.email} required />
+            <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <Field label="Full Name" id="name" type="text" error={errors.name} required />
+                <Field label="Email Address" id="email" type="email" error={errors.email} required />
+              </div>
+              <Field label="Subject" id="subject" type="text" error={errors.subject} required />
+              <Field
+                label="Message"
+                id="message"
+                as="textarea"
+                rows={6}
+                error={errors.message}
+                required
+                placeholder="Tell me about your project, timeline, and budget..."
+              />
             </div>
-            <Field label="Subject" id="subject" type="text" error={errors.subject} required />
-            <Field
-              label="Message"
-              id="message"
-              as="textarea"
-              rows={5}
-              error={errors.message}
-              required
-              placeholder="Tell me about your project, timeline, and budget..."
-            />
 
             {status === "error" && (
               <motion.div
@@ -155,7 +158,7 @@ export function ContactForm() {
               variant="brand"
               size="lg"
               disabled={status === "submitting"}
-              className="mt-9 w-full group relative overflow-hidden"
+              className="mt-8 w-full group relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {status === "submitting" ? (
