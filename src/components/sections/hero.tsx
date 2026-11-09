@@ -118,15 +118,21 @@ export default function Hero() {
           </Link>
           <Link
             href="/api/download-resume"
-            className="px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
+            className="group relative px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2 overflow-hidden"
           >
-            <Download className="h-4 w-4" /> Download Resume
+            <span className="relative z-10 flex items-center gap-2">
+              <Download className="h-4 w-4 group-hover:translate-x-1 transition-transform" /> Download Resume
+            </span>
+            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </Link>
           <a
             href="/contact"
-            className="px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
+            className="group relative px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2 overflow-hidden"
           >
-            <Play className="h-4 w-4" /> Contact Me
+            <span className="relative z-10 flex items-center gap-2">
+              <Play className="h-4 w-4 group-hover:translate-x-1 transition-transform" /> Contact Me
+            </span>
+            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </a>
         </motion.div>
 
