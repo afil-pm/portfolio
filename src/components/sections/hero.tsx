@@ -4,7 +4,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Play, Mail, Smartphone, Link as LinkIcon, Github } from "lucide-react";
-import { useEffect } from "react";
 
 export default function Hero() {
   return (
@@ -110,7 +109,7 @@ export default function Hero() {
         >
           <Link
             href="/projects"
-            className="group relative px-10 py-4.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-1 transition-all flex items-center gap-2 overflow-hidden"
+            className="group relative px-5 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-1 transition-all flex items-center gap-2 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
               Explore My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -119,13 +118,13 @@ export default function Hero() {
           </Link>
           <Link
             href="/api/download-resume"
-            className="px-10 py-4.5 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
+            className="px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
           >
             <Download className="h-4 w-4" /> Download Resume
           </Link>
           <a
             href="/contact"
-            className="px-10 py-4.5 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
+            className="px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
           >
             <Play className="h-4 w-4" /> Contact Me
           </a>
@@ -158,15 +157,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-          className="absolute bottom-[6%] left-1/2 -translate-x-1/2 animate-[bounce_3s_infinite] text-slate-500 text-[10px] uppercase tracking-widest font-medium"
-        >
-          Scroll
-        </motion.div>
       </div>
 
       {/* JSON-LD Structured Data for SEO */}

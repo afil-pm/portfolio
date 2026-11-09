@@ -19,7 +19,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/", icon: Home },
@@ -96,9 +95,7 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <Button variant="ghost" size="sm" className="ml-2 h-8 w-8 p-0">
-              <ThemeToggle />
-            </Button>
+
           </div>
 
           {/* Mobile toggle */}
@@ -161,11 +158,7 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <div className="pt-4 border-t border-white/10 flex items-center gap-2 px-2">
-              <Button variant="ghost" size="sm" className="flex-1" onClick={() => setMobileOpen(false)}>
-                <ThemeToggle />
-              </Button>
-            </div>
+
           </div>
         </div>
       )}
