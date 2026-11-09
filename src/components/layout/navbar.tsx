@@ -76,7 +76,7 @@ export function Navbar() {
               className="flex items-center gap-2 group"
               aria-label="AFIL PM — home"
             >
-              <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
+              <div className="w-[45px] h-[45px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
                 AP
               </div>
               <span className="font-display font-bold text-lg tracking-tight text-white">
