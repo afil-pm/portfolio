@@ -74,43 +74,51 @@ export function ContactForm() {
     <section className="max-w-7xl mx-auto px-6 py-24 md:py-32">
       <div className="lg:grid lg:cols-12 gap-16">
         <div className="lg:col-span-5">
-          <div className="text-center lg:text-left mb-12">
-            <h2 className="h-section text-3xl md:text-4xl font-bold text-text mb-4">Get In Touch</h2>
-            <p className="text-muted text-lg">
-              Have a project in mind? I'd love to hear about it. Whether you need a
-              web application, motion graphics, or video editing — let's collaborate.
-            </p>
-          </div>
-
           <div className="space-y-8">
-            {SOCIALS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glass-card flex items-center gap-4 p-4 hover:border-brand/40 transition-colors"
-              >
-                <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center text-brand">
-                  <item.icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <span className="font-semibold text-text block">{item.label}</span>
-                  <span className="text-xs text-muted">{item.href}</span>
-                </div>
-              </a>
-            ))}
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-1.5 text-[11px] font-medium text-blue-400/90 uppercase tracking-widest mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                Get In Touch
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
+                Let's build something amazing
+              </h2>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Have a project in mind? I'd love to hear about it. Whether you need a
+                web application, motion graphics, or video editing — let's collaborate.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {SOCIALS.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all"
+                >
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-blue-500 bg-blue-500/10 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <span className="font-semibold text-slate-200 block">{item.label}</span>
+                    <span className="text-xs text-slate-500">{item.href}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="lg:col-span-7">
           <motion.form
             onSubmit={handleSubmit}
-            className="glass-card space-y-5"
-            initial={{ opacity: 0, y: 20 }}
+            className="rounded-3xl border border-white/5 bg-white/5 p-8 md:p-12"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-6">
               <Field label="Full Name" id="name" type="text" error={errors.name} required />
               <Field label="Email Address" id="email" type="email" error={errors.email} required />
             </div>
@@ -119,24 +127,38 @@ export function ContactForm() {
               label="Message"
               id="message"
               as="textarea"
-              rows={5}
+              rows={6}
               error={errors.message}
               required
-              placeholder="Tell me about your project..."
+              placeholder="Tell me about your project, timeline, and budget..."
             />
 
             {status === "error" && (
-              <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 text-sm text-red-400">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5 text-sm text-rose-400"
+              >
                 {message || "Something went wrong. Please try again."}
-              </div>
+              </motion.div>
             )}
             {status === "success" && (
-              <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-4 text-sm text-emerald-400">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-sm text-emerald-400"
+              >
                 Thank you! Your message has been sent successfully. I'll get back to you soon.
-              </div>
+              </motion.div>
             )}
 
-            <Button type="submit" variant="brand" size="lg" disabled={status === "submitting"} className="w-full">
+            <Button
+              type="submit"
+              variant="brand"
+              size="lg"
+              disabled={status === "submitting"}
+              className="mt-8 w-full"
+            >
               {status === "submitting" ? "Sending..." : "Send Message"}
             </Button>
           </motion.form>
@@ -167,8 +189,10 @@ function Field({
 }) {
   const Comp = as === "textarea" ? Textarea : Input;
   return (
-    <div className="space-y-2">
-      <Label htmlFor={id}>{label}{required && <span className="text-red-500 ml-1">*</span>}</Label>
+    <div className="space-y-3">
+      <Label htmlFor={id} className="text-sm font-medium text-slate-300">
+        {label}{required && <span className="text-rose-400 ml-1">*</span>}
+      </Label>
       <Comp
         id={id}
         name={id}
@@ -177,10 +201,10 @@ function Field({
         placeholder={placeholder}
         required={required}
         aria-invalid={!!error?.length}
-        className={error?.length ? "border-red-500/50 focus:ring-red-500/50" : undefined}
+        className={error?.length ? "border-rose-500/50 focus:ring-rose-500/50" : undefined}
       />
       {error?.length && (
-        <p className="text-xs text-red-500">{error[0]}</p>
+        <p className="text-[10px] text-rose-400">{error[0]}</p>
       )}
     </div>
   );

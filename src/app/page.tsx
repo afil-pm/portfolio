@@ -1,4 +1,4 @@
-// src/app/(public)/page.tsx
+// src/app/page.tsx
 import Hero from "@/components/sections/hero";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";

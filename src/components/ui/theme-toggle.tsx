@@ -3,7 +3,6 @@
 
 import * as React from "react";
 import { Sun, Moon } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const [theme, setTheme] = React.useState<"light" | "dark">("dark");
@@ -29,16 +28,16 @@ export function ThemeToggle({ className }: { className?: string }) {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className={cn(
-        "relative flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-surface text-text transition-colors hover:bg-brand hover:text-white focus:outline-none focus:ring-2 focus:ring-brand/50",
-        className
-      )}
+      className={[
+        "relative flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-200 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50",
+        className,
+      ].join(" ")}
     >
       <Sun
-        className={cn("h-4 w-4 transition-opacity duration-200", theme === "dark" ? "opacity-0" : "opacity-100")}
+        className={["h-4 w-4 transition-opacity duration-200", theme === "dark" ? "opacity-0" : "opacity-100"].join(" ")}
       />
       <Moon
-        className={cn("h-4 w-4 transition-opacity duration-200", theme === "dark" ? "opacity-100" : "opacity-0")}
+        className={["h-4 w-4 transition-opacity duration-200", theme === "dark" ? "opacity-100" : "opacity-0"].join(" ")}
       />
     </button>
   );

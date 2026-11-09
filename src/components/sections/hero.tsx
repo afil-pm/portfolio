@@ -3,147 +3,223 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Play } from "lucide-react";
-
-const ROLES = [
-  "Full-Stack Web Developer.",
-  "Motion Graphics Designer.",
-  "UI/UX Designer.",
-  "Cybersecurity-focused Engineer.",
-];
+import { ArrowRight, Download, Play, Mail, Smartphone, Link as LinkIcon, Github } from "lucide-react";
+import { useEffect } from "react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20">
-      {/* Background mesh */}
-      <div className="absolute inset-0 z-0 bg-gradient-mesh" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-brand/10 blur-[120px] -z-10" />
-      <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-[600px] h-[600px] rounded-full bg-emerald-500/10 blur-[100px] -z-10" />
+    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden px-6 pt-20">
+      {/* Background layers */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+      
+      {/* Ambient glow blobs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 blur-[120px] rounded-full -z-10 animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 blur-[100px] rounded-full -z-10 animate-pulse" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-[20%] right-[15%] w-[400px] h-[400px] bg-purple-600/8 blur-[90px] rounded-full -z-10" style={{ animationDelay: "4s" }} />
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
+      {/* Grid pattern subtle */}
+      <div className="absolute inset-0 z-0 [background-image:linear-gradient(to_right,#1e293b1a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b1a_1px,transparent_1px)] [background-size:48px_48px] opacity-30 pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto text-center">
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-surface/40 px-4 py-1.5 text-xs font-medium text-muted uppercase tracking-wider"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-1.5 text-[11px] font-medium text-blue-400/90 uppercase tracking-widest backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.15)]"
         >
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
           Available for freelance &bull; Open to collaboration
         </motion.div>
 
+        {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 h-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-text leading-tight"
+          className="mt-8 mb-2 text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-tight"
         >
-          AFIL{" "}
-          <span className="bg-gradient-brand bg-clip-text text-transparent">PM</span>
+          AFIL<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500">PM</span>
         </motion.h1>
 
+        {/* Role */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-3 text-xl md:text-2xl text-muted font-medium tracking-tight"
+          className="mt-3 text-xl md:text-2xl text-slate-400 font-medium tracking-tight"
         >
           Full-Stack Web Developer &amp; Motion Graphics Designer
         </motion.h2>
 
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-6 max-w-xl mx-auto text-muted text-base md:text-lg leading-relaxed"
+          className="mt-6 max-w-2xl mx-auto text-slate-300 text-base md:text-lg leading-relaxed"
         >
           I build secure, performant web applications and craft compelling motion
-          graphics that bring brands to life. Blending technical depth with
+          graphics that bring brands to life — blending technical depth with
           creative storytelling.
         </motion.p>
 
-        {/* Typing animation roles */}
+        {/* Animated roles */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-10 flex flex-col items-center gap-4"
+          className="mt-10 inline-block"
         >
-          <div className="relative flex items-center justify-center min-w-[320px]">
-            <span className="relative text-xl md:text-2xl font-semibold text-text">
-              <motion.span
-                className="relative inline-block text-text"
-                animate={{
-                  width: ["0%", "100%", "100%", "0%"],
-                }}
-                transition={{
-                  duration: 12,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              >
-                {ROLES.map((role, i) => (
-                  <span key={i} className="absolute left-0 text-text">
-                    {role}
-                  </span>
-                ))}
-              </motion.span>
-              <span className="ml-1 animate-pulse text-brand">█</span>
-            </span>
-          </div>
+          <span className="relative text-2xl md:text-3xl font-semibold text-white">
+            <motion.span
+              className="relative inline-block text-white"
+              animate={{
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[
+                "Full-Stack Developer.",
+                "Motion Graphics Designer.",
+                "UI/UX Designer.",
+                "Security-Focused Engineer.",
+              ].map((role, i) => (
+                <span
+                  key={i}
+                  className="absolute left-0 top-0 text-white"
+                  style={{ opacity: 0 }}
+                >
+                  {role}
+                </span>
+              ))}
+            </motion.span>
+          </span>
         </motion.div>
 
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-5"
         >
           <Link
             href="/projects"
-            className="group relative px-8 py-4 rounded-2xl bg-gradient-brand text-white font-semibold text-sm shadow-lg shadow-brand/30 hover:shadow-brand/50 hover:-translate-y-1 transition-all flex items-center gap-2"
+            className="group relative px-10 py-4.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-1 transition-all flex items-center gap-2 overflow-hidden"
           >
-            Explore My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 flex items-center gap-2">
+              Explore My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </Link>
           <Link
             href="/api/download-resume"
-            className="px-8 py-4 rounded-2xl border border-border bg-surface/60 text-text font-semibold text-sm hover:bg-surface hover:border-brand/50 transition-all flex items-center gap-2"
+            className="px-10 py-4.5 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
           >
             <Download className="h-4 w-4" /> Download Resume
           </Link>
           <a
             href="/contact"
-            className="px-8 py-4 rounded-2xl border border-border bg-surface/60 text-text font-semibold text-sm hover:bg-surface hover:border-brand/50 transition-all flex items-center gap-2"
+            className="px-10 py-4.5 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2"
           >
             <Play className="h-4 w-4" /> Contact Me
           </a>
         </motion.div>
 
+        {/* Social links */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-16 flex justify-center gap-6 opacity-60"
+          className="mt-20 flex justify-center gap-8 opacity-50"
         >
-          <a href="#" className="text-muted hover:text-brand transition-colors" aria-label="GitHub">
-            <span className="sr-only">GitHub</span>
+          <a href="#" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all" aria-label="GitHub">
+            <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+              GitHub
+            </span>
           </a>
-          <a href="#" className="text-muted hover:text-brand transition-colors" aria-label="LinkedIn">
-            <span className="sr-only">LinkedIn</span>
+          <a href="#" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-400/50 hover:bg-purple-500/10 transition-all" aria-label="LinkedIn">
+            <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+              LinkedIn
+            </span>
           </a>
-          <a href="#" className="text-muted hover:text-brand transition-colors" aria-label="Behance">
-            <span className="sr-only">Behance</span>
+          <a href="#" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all" aria-label="Behance">
+            <Smartphone className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+              WhatsApp
+            </span>
           </a>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+          className="absolute bottom-[6%] left-1/2 -translate-x-1/2 animate-[bounce_3s_infinite] text-slate-500 text-[10px] uppercase tracking-widest font-medium"
+        >
+          Scroll
         </motion.div>
       </div>
 
-      {/* Subtle indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-[bounce_2s_infinite] text-muted text-xs uppercase tracking-widest"
-      >
-        Scroll
-      </motion.div>
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "AFIL PM",
+            jobTitle: "Full-Stack Web Developer & Motion Graphics Designer",
+            url: "https://afilpm.example.com",
+            sameAs: [
+              "https://github.com",
+              "https://linkedin.com",
+              "https://twitter.com",
+              "https://instagram.com",
+            ],
+            knowsAbout: [
+              "Web Development",
+              "Full-Stack Applications",
+              "UI/UX Design",
+              "Motion Graphics",
+              "Video Editing",
+              "Cybersecurity",
+              "React",
+              "Next.js",
+              "Node.js",
+              "After Effects",
+              "Premiere Pro",
+            ],
+          }),
+        }}
+      />
+
+      {/* Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "AFIL PM",
+            url: "https://afilpm.example.com",
+            logo: "/icon.png",
+            sameAs: [
+              "https://github.com",
+              "https://linkedin.com",
+              "https://twitter.com",
+            ],
+          }),
+        }}
+      />
     </section>
   );
 }

@@ -56,7 +56,7 @@ export function Navbar() {
     >
       <div
         className={[
-          "glass mx-4 mt-2.5 rounded-3xl px-4 py-2.5 border border-border/60",
+          "glass mx-4 mt-2.5 rounded-2xl px-4 py-2 border border-white/10 backdrop-blur-md",
           scrolled ? "shadow-lg shadow-black/30" : "shadow-sm",
         ].join(" ")}
       >
@@ -67,11 +67,11 @@ export function Navbar() {
             className="flex items-center gap-2 group"
             aria-label="AFIL PM — home"
           >
-            <div className="w-8 h-8 rounded-xl bg-gradient-brand flex items-center justify-center text-sm font-bold text-white group-hover:scale-110 transition-transform">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/25">
               AP
             </div>
-            <span className="font-display font-bold text-lg tracking-tight text-text">
-              AFIL<span className="text-brand">PM</span>
+            <span className="font-display font-bold text-lg tracking-tight text-white">
+              AFIL<span className="text-blue-400">PM</span>
             </span>
           </Link>
 
@@ -85,14 +85,14 @@ export function Navbar() {
                   key={item.name}
                   href={item.href}
                   className={[
-                    "flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-medium transition-all",
+                    "flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all",
                     active
-                      ? "bg-brand text-white shadow-lg shadow-brand/25"
-                      : "text-muted hover:text-text hover:bg-surface/50",
+                      ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                      : "text-slate-400 hover:text-white hover:bg-white/5",
                   ].join(" ")}
                 >
-                  <Icon className={cnSize(active ? 5 : 4)} />
-                  <span className="ml-1">{item.name}</span>
+                  <Icon className={active ? "h-5 w-5" : "h-4 w-4"} />
+                  <span className="ml-1.5">{item.name}</span>
                 </Link>
               );
             })}
@@ -124,12 +124,12 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden glass border-b border-border/60">
+        <div className="md:hidden glass border-b border-white/10">
           <div className="max-w-7xl mx-auto px-4 py-3 space-y-1">
-            <div className="flex items-center justify-between px-2 mb-4 border-b border-border/40 pb-2">
-              <span className="font-display font-bold text-lg tracking-tight text-text flex items-center gap-2">
-                <div className="w-6 h-6 rounded-lg bg-gradient-brand flex items-center justify-center text-[10px] font-bold text-white">AP</div>
-                AFIL<span className="text-brand">PM</span>
+            <div className="flex items-center justify-between px-2 mb-4 border-b border-white/5 pb-2">
+              <span className="font-display font-bold text-lg tracking-tight text-white flex items-center gap-2">
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">AP</div>
+                AFIL<span className="text-blue-400">PM</span>
               </span>
               <Button
                 variant="ghost"
@@ -149,19 +149,19 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
                   className={[
-                    "flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-medium transition-all",
+                    "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
                     active
-                      ? "bg-brand/10 text-brand border border-brand/20"
-                      : "text-muted hover:text-text hover:bg-surface/40",
+                      ? "bg-blue-600/10 text-blue-400 border border-blue-500/20"
+                      : "text-slate-400 hover:text-white hover:bg-white/5",
                   ].join(" ")}
                 >
                   <Icon className="h-4 w-4" />
                   <span>{item.name}</span>
-                  {active && <ChevronRight className="ml-auto h-3 w-3 text-brand" />}
+                  {active && <ChevronRight className="ml-auto h-3 w-3 text-blue-400" />}
                 </Link>
               );
             })}
-            <div className="pt-4 border-t border-border/40 flex items-center gap-2 px-2">
+            <div className="pt-4 border-t border-white/10 flex items-center gap-2 px-2">
               <Button variant="ghost" size="sm" className="flex-1" onClick={() => setMobileOpen(false)}>
                 <ThemeToggle />
               </Button>
@@ -171,8 +171,4 @@ export function Navbar() {
       )}
     </nav>
   );
-}
-
-function cnSize(n: number) {
-  return `h-${n} w-${n}`;
 }
