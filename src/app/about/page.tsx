@@ -70,7 +70,7 @@ export default function AboutPage() {
           <div className="space-y-8">
             {journey.map((item, i) => (
               <div key={i} className="relative flex gap-4 pl-8">
-                <div className="relative flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/25">
+                <div className="relative flex-shrink-0 w-45 h-45 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/25">
                   {item.year}
                 </div>
                 <div className="relative z-10">
