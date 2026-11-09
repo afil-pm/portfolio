@@ -109,28 +109,28 @@ export default function Hero() {
         >
           <Link
             href="/projects"
-            className="group relative px-5 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-1 transition-all flex items-center gap-2 overflow-hidden"
+            className="group relative px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:-translate-y-2 hover:shadow-blue-600/50 active:-translate-y-0.5 active:shadow-blue-600/20 transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Explore My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              Explore My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
             <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </Link>
           <Link
             href="/api/download-resume"
-            className="group relative px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2 overflow-hidden"
+            className="group relative px-6 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm shadow-sm hover:-translate-y-2 hover:shadow-lg hover:shadow-white/10 hover:border-white/20 active:-translate-y-0.5 active:shadow-none transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <Download className="h-4 w-4 group-hover:translate-x-1 transition-transform" /> Download Resume
+              <Download className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /> Download Resume
             </span>
             <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </Link>
           <a
             href="/contact"
-            className="group relative px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-2 overflow-hidden"
+            className="group relative px-6 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm shadow-sm hover:-translate-y-2 hover:shadow-lg hover:shadow-white/10 hover:border-white/20 active:-translate-y-0.5 active:shadow-none transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <Play className="h-4 w-4 group-hover:translate-x-1 transition-transform" /> Contact Me
+              <Play className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /> Contact Me
             </span>
             <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </a>

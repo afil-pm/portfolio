@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
-import { Mail, Smartphone, Link as LinkIcon, Github } from "lucide-react";
+import { Mail, Smartphone, Link as LinkIcon, Github, ArrowRight } from "lucide-react";
 
 const SOCIALS = [
   { label: "Email", href: "mailto:hello@example.com", icon: Mail },
@@ -114,11 +114,11 @@ export function ContactForm() {
         <div className="lg:col-span-7">
           <motion.form
             onSubmit={handleSubmit}
-            className="rounded-3xl border border-white/5 bg-white/5 p-8 md:p-12"
+            className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)]"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-5">
               <Field label="Full Name" id="name" type="text" error={errors.name} required />
               <Field label="Email Address" id="email" type="email" error={errors.email} required />
             </div>
@@ -127,7 +127,7 @@ export function ContactForm() {
               label="Message"
               id="message"
               as="textarea"
-              rows={6}
+              rows={5}
               error={errors.message}
               required
               placeholder="Tell me about your project, timeline, and budget..."
@@ -137,7 +137,7 @@ export function ContactForm() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 rounded-2xl border border-rose-500/20 bg-rose-500/5 p-5 text-sm text-rose-400"
+                className="mt-7 rounded-xl border border-rose-500/30 bg-rose-500/10 p-5 text-sm text-rose-300 shadow-sm"
               >
                 {message || "Something went wrong. Please try again."}
               </motion.div>
@@ -146,7 +146,7 @@ export function ContactForm() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-sm text-emerald-400"
+                className="mt-7 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-5 text-sm text-emerald-300 shadow-sm"
               >
                 Thank you! Your message has been sent successfully. I'll get back to you soon.
               </motion.div>
@@ -157,9 +157,24 @@ export function ContactForm() {
               variant="brand"
               size="lg"
               disabled={status === "submitting"}
-              className="mt-8 w-full"
+              className="mt-9 w-full group relative overflow-hidden"
             >
-              {status === "submitting" ? "Sending..." : "Send Message"}
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                {status === "submitting" ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </>
+                )}
+              </span>
+              <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             </Button>
           </motion.form>
         </div>

@@ -54,24 +54,26 @@ export function Navbar() {
     >
       <div
         className={[
-          "glass mx-4 mt-2.5 rounded-2xl px-4 py-2 border border-white/10 backdrop-blur-md",
+          "glass mx-4 mt-2.5 rounded-3xl px-6 py-3 border border-white/10 backdrop-blur-md",
           scrolled ? "shadow-lg shadow-black/30" : "shadow-sm",
         ].join(" ")}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Brand */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 group"
-            aria-label="AFIL PM — home"
-          >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/25">
-              AP
-            </div>
-            <span className="font-display font-bold text-lg tracking-tight text-white">
-              AFIL<span className="text-blue-400">PM</span>
-            </span>
-          </Link>
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
+          {/* Brand — flush left */}
+          <div className="flex items-center gap-3 shrink-0">
+            <Link
+              href="/"
+              className="flex items-center gap-2 group"
+              aria-label="AFIL PM — home"
+            >
+              <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
+                AP
+              </div>
+              <span className="font-display font-bold text-lg tracking-tight text-white">
+                AFIL<span className="text-blue-400">PM</span>
+              </span>
+            </Link>
+          </div>
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center gap-1">
@@ -118,7 +120,7 @@ export function Navbar() {
           <div className="max-w-7xl mx-auto px-4 py-3 space-y-1">
             <div className="flex items-center justify-between px-2 mb-4 border-b border-white/5 pb-2">
               <span className="font-display font-bold text-lg tracking-tight text-white flex items-center gap-2">
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">AP</div>
+                <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white">AP</div>
                 AFIL<span className="text-blue-400">PM</span>
               </span>
               <Button
