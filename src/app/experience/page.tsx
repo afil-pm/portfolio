@@ -1,8 +1,6 @@
 // src/app/experience/page.tsx
-"use client";
 
-import { motion } from "framer-motion";
-import { useFetch } from "@/hooks/use-fetch";
+import { db } from "@/lib/db";
 import { Mail, Clock, Award, GraduationCap } from "lucide-react";
 
 const TYPE_ICON: Record<string, any> = {
@@ -14,20 +12,57 @@ const TYPE_ICON: Record<string, any> = {
   Achievement: Award,
 };
 
-export default function ExperiencePage() {
-  const { data: experience, loading } = useFetch<any>("/api/experience");
+const SAMPLE_EXPERIENCE = [
+  {
+    id: "exp-1",
+    title: "Freelance Web Developer",
+    company: "Self-Employed",
+    type: "Freelance",
+    startDate: "2024-01-01",
+    endDate: null,
+    present: true,
+    description: "Building secure, performant web applications for clients worldwide using Next.js, React, and Node.js.",
+    order: 1,
+    isPublished: true,
+  },
+  {
+    id: "exp-2",
+    title: "Motion Graphics Designer",
+    company: "Freelance",
+    type: "Creative",
+    startDate: "2023-01-01",
+    endDate: null,
+    present: true,
+    description: "Creating motion graphics and video edits using After Effects, Premiere Pro, and DaVinci Resolve.",
+    order: 2,
+    isPublished: true,
+  },
+  {
+    id: "exp-3",
+    title: "Full-Stack Development",
+    company: "Personal Projects",
+    type: "Development",
+    startDate: "2022-01-01",
+    endDate: null,
+    present: true,
+    description: "Developing full-stack applications with React, Node.js, databases, and REST APIs.",
+    order: 3,
+    isPublished: true,
+  },
+];
 
-  if (loading) {
-    return (
-      <div className="max-w-4xl mx-auto px-6 py-24 text-center">
-        <motion.div
-          className="inline-block w-10 h-10 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"
-        />
-      </div>
-    );
+export default async function ExperiencePage() {
+  let experience;
+  try {
+    experience = await db.experience.findMany({
+      where: { isPublished: true },
+      orderBy: { startDate: "desc" },
+    });
+  } catch {
+    experience = SAMPLE_EXPERIENCE;
   }
 
-  const items = (experience || []).sort(
+  const items = experience.sort(
     (a: any, b: any) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
   );
 
@@ -63,12 +98,8 @@ export default function ExperiencePage() {
       <div className="relative">
         <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-white/5" />
         {items.map((item: any, i: number) => (
-          <motion.div
+          <div
             key={item.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
             className="relative mb-16 pl-8"
           >
             <div className="absolute left-0 top-3 w-3 h-3 rounded-full bg-blue-500 border-2 border-slate-950 shadow-[0_0_0_4px_rgba(59,130,246,0.2)]" />
@@ -91,7 +122,7 @@ export default function ExperiencePage() {
                 <p className="text-sm text-slate-300 leading-relaxed">{item.description}</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

@@ -1,7 +1,5 @@
 // src/app/about/page.tsx
-"use client";
 
-import { motion } from "framer-motion";
 import { Code, Layers, Play, ShieldCheck, Globe, Film } from "lucide-react";
 
 const journey = [
@@ -60,12 +58,7 @@ export default function AboutPage() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-16 mb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="space-y-10"
-        >
+        <div className="space-y-10">
           <h3 className="text-2xl font-bold text-white mb-2">My Journey</h3>
           <div className="space-y-8">
             {journey.map((item, i) => (
@@ -80,14 +73,9 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="space-y-10"
-        >
+        <div className="space-y-10">
           <h3 className="text-2xl font-bold text-white mb-2">Technical Interests</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {interests.map((item, i) => (
@@ -102,7 +90,7 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
@@ -120,16 +108,13 @@ export default function AboutPage() {
             body: "Working with clients across industries to build websites, web apps, and creative media from concept to launch.",
           },
         ].map((card) => (
-          <motion.div
+          <div
             key={card.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             className="rounded-3xl border border-white/5 bg-white/5 p-8 hover:bg-white/10 hover:border-white/10 transition-all"
           >
             <h4 className="font-semibold text-white mb-3">{card.title}</h4>
             <p className="text-sm text-slate-400 leading-relaxed">{card.body}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

@@ -1,8 +1,6 @@
 // src/app/services/page.tsx
-"use client";
 
-import { motion } from "framer-motion";
-import { useFetch } from "@/hooks/use-fetch";
+import { db } from "@/lib/db";
 
 const SERVICE_DESC: Record<string, string> = {
   "Website Development": "Clean, responsive websites built with modern frontend technologies.",
@@ -28,20 +26,27 @@ const SERVICE_ICONS: Record<string, string> = {
   "Social Media Creative Design": "📱",
 };
 
-export default function ServicesPage() {
-  const { data: services, loading } = useFetch<any>("/api/services");
+const SAMPLE_SERVICES = Object.entries(SERVICE_DESC).map(([title, description], i) => ({
+  id: `svc-${i}`,
+  title,
+  description,
+  icon: SERVICE_ICONS[title] || "★",
+  order: i,
+  isPublished: true,
+}));
 
-  if (loading) {
-    return (
-      <div className="max-w-7xl mx-auto px-6 py-24 text-center">
-        <motion.div
-          className="inline-block w-10 h-10 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"
-        />
-      </div>
-    );
+export default async function ServicesPage() {
+  let services;
+  try {
+    services = await db.service.findMany({
+      where: { isPublished: true },
+      orderBy: { order: "asc" },
+    });
+  } catch {
+    services = SAMPLE_SERVICES;
   }
 
-  const items = (services || []).sort((a: any, b: any) => (a.order || 0) - (b.order || 0));
+  const items = services.sort((a: any, b: any) => (a.order || 0) - (b.order || 0));
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-24 md:py-32">
@@ -60,11 +65,8 @@ export default function ServicesPage() {
 
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
         {items.map((service: any) => (
-          <motion.div
+          <div
             key={service.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             className="group relative rounded-3xl border border-white/5 bg-white/5 p-8 hover:bg-white/10 hover:border-white/20 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-blue-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
@@ -75,7 +77,7 @@ export default function ServicesPage() {
             <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-grow">
               {SERVICE_DESC[service.title] || service.description}
             </p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

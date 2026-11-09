@@ -21,55 +21,30 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-1.5 text-[11px] font-medium text-blue-400/90 uppercase tracking-widest backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.15)]"
-        >
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-1.5 text-[11px] font-medium text-blue-400/90 uppercase tracking-widest backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.15)]">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
           Available for freelance &bull; Open to collaboration
-        </motion.div>
+        </div>
 
         {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-8 mb-2 text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-tight"
-        >
+        <h1 className="mt-8 mb-2 text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-tight">
           AFIL<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500">PM</span>
-        </motion.h1>
+        </h1>
 
         {/* Role */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-3 text-xl md:text-2xl text-slate-400 font-medium tracking-tight"
-        >
+        <h2 className="mt-3 text-xl md:text-2xl text-slate-400 font-medium tracking-tight">
           Full-Stack Web Developer &amp; Motion Graphics Designer
-        </motion.h2>
+        </h2>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-6 max-w-2xl mx-auto text-slate-300 text-base md:text-lg leading-relaxed"
-        >
+        <p className="mt-6 max-w-2xl mx-auto text-slate-300 text-base md:text-lg leading-relaxed">
           I build secure, performant web applications and craft compelling motion
           graphics that bring brands to life — blending technical depth with
           creative storytelling.
-        </motion.p>
+        </p>
 
-        {/* Animated roles */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-10 inline-block"
-        >
+        {/* Animated roles (typing effect - deliberate, starts immediately) */}
+        <div className="mt-10 inline-block">
           <span className="relative text-2xl md:text-3xl font-semibold text-white">
             <motion.span
               className="relative inline-block text-white"
@@ -98,15 +73,10 @@ export default function Hero() {
               ))}
             </motion.span>
           </span>
-        </motion.div>
+        </div>
 
         {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-5"
-        >
+        <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-5">
           <Link
             href="/projects"
             className="group relative px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:-translate-y-2 hover:shadow-blue-600/50 active:-translate-y-0.5 active:shadow-blue-600/20 transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
@@ -134,15 +104,10 @@ export default function Hero() {
             </span>
             <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
           </a>
-        </motion.div>
+        </div>
 
         {/* Social links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-20 flex justify-center gap-6 opacity-50"
-        >
+        <div className="mt-20 flex justify-center gap-6 opacity-50">
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all" aria-label="GitHub">
             <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
@@ -161,7 +126,7 @@ export default function Hero() {
               WhatsApp
             </span>
           </a>
-        </motion.div>
+        </div>
 
       </div>
 

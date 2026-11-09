@@ -1,26 +1,49 @@
 // src/app/skills/page.tsx
-"use client";
 
-import { motion } from "framer-motion";
-import { useFetch } from "@/hooks/use-fetch";
+import { db } from "@/lib/db";
 import { lucideIcons } from "@/components/sections/skills-icons";
 
-export default function SkillsPage() {
-  const { data: skills, loading } = useFetch<any>("/api/skills");
+const SAMPLE_SKILLS = [
+  { name: "HTML5", category: "Frontend Development", icon: "Code", order: 1 },
+  { name: "CSS3", category: "Frontend Development", icon: "Code", order: 2 },
+  { name: "JavaScript", category: "Frontend Development", icon: "Code", order: 3 },
+  { name: "TypeScript", category: "Frontend Development", icon: "Code", order: 4 },
+  { name: "React.js", category: "Frontend Development", icon: "Code", order: 5 },
+  { name: "Next.js", category: "Frontend Development", icon: "Code", order: 6 },
+  { name: "Tailwind CSS", category: "Frontend Development", icon: "Code", order: 7 },
+  { name: "Bootstrap", category: "Frontend Development", icon: "Code", order: 8 },
+  { name: "Node.js", category: "Backend Development", icon: "Code", order: 1 },
+  { name: "PHP", category: "Backend Development", icon: "Code", order: 2 },
+  { name: "Python", category: "Backend Development", icon: "Code", order: 3 },
+  { name: "REST APIs", category: "Backend Development", icon: "Code", order: 4 },
+  { name: "MySQL", category: "Backend Development", icon: "Code", order: 5 },
+  { name: "MongoDB", category: "Backend Development", icon: "Code", order: 6 },
+  { name: "Git", category: "Development Tools", icon: "Code", order: 1 },
+  { name: "GitHub", category: "Development Tools", icon: "Code", order: 2 },
+  { name: "VS Code", category: "Development Tools", icon: "Code", order: 3 },
+  { name: "Linux", category: "Development Tools", icon: "Code", order: 4 },
+  { name: "Postman", category: "Development Tools", icon: "Code", order: 5 },
+  { name: "Vercel", category: "Development Tools", icon: "Code", order: 6 },
+  { name: "Alight Motion", category: "Motion Graphics & Video Editing", icon: "Play", order: 1 },
+  { name: "Adobe After Effects", category: "Motion Graphics & Video Editing", icon: "Play", order: 2 },
+  { name: "Adobe Premiere Pro", category: "Motion Graphics & Video Editing", icon: "Play", order: 3 },
+  { name: "Adobe Photoshop", category: "Motion Graphics & Video Editing", icon: "Play", order: 4 },
+  { name: "Adobe Illustrator", category: "Motion Graphics & Video Editing", icon: "Play", order: 5 },
+  { name: "DaVinci Resolve", category: "Motion Graphics & Video Editing", icon: "Play", order: 6 },
+];
 
-  if (loading) {
-    return (
-      <div className="max-w-7xl mx-auto px-6 py-24 text-center">
-        <motion.div
-          className="inline-block w-10 h-10 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"
-        />
-      </div>
-    );
+export default async function SkillsPage() {
+  let skills;
+  try {
+    skills = await db.skill.findMany({
+      where: { isPublished: true },
+      orderBy: [{ category: "asc" }, { order: "asc" }],
+    });
+  } catch {
+    skills = SAMPLE_SKILLS;
   }
 
-  const items = (skills || []).sort((a: any, b: any) => (a.order || 0) - (b.order || 0));
-
-  const grouped = Object.groupBy(items, (s: any) => s.category);
+  const grouped = Object.groupBy(skills, (s) => s.category);
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-24 md:py-32">
@@ -38,15 +61,11 @@ export default function SkillsPage() {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-10">
-        {Object.entries(grouped).map(([category, categoryItems], idx) => {
+        {Object.entries(grouped).map(([category, categoryItems]) => {
           const sorted = (categoryItems || []).sort((a: any, b: any) => (a.order || 0) - (b.order || 0));
           return (
-            <motion.div
+            <div
               key={category}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
               className="rounded-3xl border border-white/5 bg-white/5 p-8 hover:bg-white/10 hover:border-white/10 transition-all"
             >
               <div className="flex items-center gap-3 mb-8">
@@ -57,22 +76,19 @@ export default function SkillsPage() {
                 {sorted.map((skill: any) => {
                   const Icon = lucideIcons[skill.icon] || lucideIcons.Code;
                   return (
-                    <motion.div
+                    <div
                       key={skill.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
                       className="flex items-center gap-3 p-4 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all group cursor-default"
                     >
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center text-blue-500 bg-blue-500/10 group-hover:rotate-6 group-hover:scale-110 transition-all duration-500">
                         <Icon className="h-5 w-5" />
                       </div>
                       <span className="text-sm font-medium text-slate-200">{skill.name}</span>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>

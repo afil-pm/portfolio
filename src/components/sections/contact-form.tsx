@@ -112,11 +112,9 @@ export function ContactForm() {
         </div>
 
         <div className="lg:col-span-7">
-          <motion.form
+          <form
             onSubmit={handleSubmit}
             className="rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)]"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
           >
             <div className="grid md:grid-cols-2 gap-5">
               <Field label="Full Name" id="name" type="text" error={errors.name} required />
@@ -176,7 +174,7 @@ export function ContactForm() {
               </span>
               <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
             </Button>
-          </motion.form>
+          </form>
         </div>
       </div>
     </section>
