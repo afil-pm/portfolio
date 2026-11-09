@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Play, Mail, Smartphone, Link as LinkIcon, Github } from "lucide-react";
+import { ArrowRight, Download, Play, Mail, Phone, Link as LinkIcon, Github, Instagram } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -141,22 +141,22 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-20 flex justify-center gap-8 opacity-50"
+          className="mt-20 flex justify-center gap-6 opacity-50"
         >
-          <a href="#" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all" aria-label="GitHub">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all" aria-label="GitHub">
             <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
               GitHub
             </span>
           </a>
-          <a href="#" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-400/50 hover:bg-purple-500/10 transition-all" aria-label="LinkedIn">
-            <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-400/50 hover:bg-purple-500/10 transition-all" aria-label="Instagram">
+            <Instagram className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
-              LinkedIn
+              Instagram
             </span>
           </a>
-          <a href="#" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all" aria-label="Behance">
-            <Smartphone className="h-5 w-5 group-hover:scale-110 transition-transform" />
+          <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all" aria-label="WhatsApp">
+            <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
               WhatsApp
             </span>
@@ -177,9 +177,8 @@ export default function Hero() {
             url: "https://afilpm.example.com",
             sameAs: [
               "https://github.com",
-              "https://linkedin.com",
-              "https://twitter.com",
               "https://instagram.com",
+              "https://wa.me/1234567890",
             ],
             knowsAbout: [
               "Web Development",
@@ -210,8 +209,8 @@ export default function Hero() {
             logo: "/icon.png",
             sameAs: [
               "https://github.com",
-              "https://linkedin.com",
-              "https://twitter.com",
+              "https://instagram.com",
+              "https://wa.me/1234567890",
             ],
           }),
         }}

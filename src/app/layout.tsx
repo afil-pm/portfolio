@@ -99,13 +99,6 @@ export function generateMetadata(): Metadata {
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: "AFIL PM — Full-Stack Web Developer & Motion Graphics Designer",
-      description:
-        "Premium portfolio showcasing web development, motion graphics, video editing, and creative design.",
-      images: ["/og-image.svg"],
-    },
     robots: { index: true, follow: true },
     alternates: {
       canonical: APP_URL,

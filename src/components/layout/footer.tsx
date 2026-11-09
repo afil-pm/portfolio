@@ -1,12 +1,11 @@
 // src/components/layout/footer.tsx
 import Link from "next/link";
-import { Mail, Smartphone, Link as LinkIcon, Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Mail, Phone, Link as LinkIcon, Github, Instagram } from "lucide-react";
 
 const SOCIALS = [
   { label: "GitHub", href: "https://github.com", icon: Github },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { label: "Twitter", href: "https://twitter.com", icon: Twitter },
   { label: "Instagram", href: "https://instagram.com", icon: Instagram },
+  { label: "WhatsApp", href: "https://wa.me/1234567890", icon: Phone },
 ];
 
 export default function Footer() {
@@ -55,7 +54,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Smartphone className="h-4 w-4 text-slate-500" />
+                <Phone className="h-4 w-4 text-slate-500" />
                 <a
                   href="https://wa.me/1234567890"
                   target="_blank"

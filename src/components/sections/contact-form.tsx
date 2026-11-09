@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
-import { Mail, Smartphone, Link as LinkIcon, Github, ArrowRight } from "lucide-react";
+import { Mail, Phone, Link as LinkIcon, Github, ArrowRight } from "lucide-react";
 
 const SOCIALS = [
   { label: "Email", href: "mailto:hello@example.com", icon: Mail },
-  { label: "WhatsApp", href: "https://wa.me/1234567890", icon: Smartphone },
+  { label: "WhatsApp", href: "https://wa.me/1234567890", icon: Phone },
   { label: "Portfolio", href: "/", icon: LinkIcon },
   { label: "GitHub", href: "https://github.com", icon: Github },
 ];
