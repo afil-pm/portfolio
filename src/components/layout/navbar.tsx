@@ -16,6 +16,8 @@ import {
   Briefcase,
   Mail,
   ChevronRight,
+  Download,
+  Play,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -41,6 +43,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    // Prevent body scroll when mobile menu is open
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [mobileOpen]);
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
@@ -65,7 +76,7 @@ export function Navbar() {
               className="flex items-center gap-2 group"
               aria-label="AFIL PM — home"
             >
-              <div className="w-[40px] h-[40px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
+              <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
                 AP
               </div>
               <span className="font-display font-bold text-lg tracking-tight text-white">
@@ -95,7 +106,6 @@ export function Navbar() {
                 </Link>
               );
             })}
-
           </div>
 
           {/* Mobile toggle */}
@@ -109,18 +119,31 @@ export function Navbar() {
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
-
         </div>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden glass border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 py-3 space-y-1">
+          <div className="max-w-7xl mx-auto px-4 py-3">
+            {/* Mobile header: Logo + Menu heading + Close button */}
             <div className="flex items-center justify-between px-2 mb-4 border-b border-white/5 pb-2">
-              <span className="font-display font-bold text-lg tracking-tight text-white flex items-center gap-2">
-                <div className="w-[40px] h-[40px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white">AP</div>
-                AFIL<span className="text-blue-400">PM</span>
+              <div className="flex items-center gap-2 shrink-0">
+                <Link
+                  href="/"
+                  className="flex items-center gap-2 group"
+                  aria-label="AFIL PM — home"
+                >
+                  <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
+                    AP
+                  </div>
+                  <span className="font-display font-bold text-lg tracking-tight text-white">
+                    AFIL<span className="text-blue-400">PM</span>
+                  </span>
+                </Link>
+              </div>
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                Menu
               </span>
               <Button
                 variant="ghost"
@@ -131,28 +154,51 @@ export function Navbar() {
                 <X className="h-4 w-4" />
               </Button>
             </div>
-            {NAV_ITEMS.map((item) => {
-              const Icon = item.icon;
-              const active = isActive(item.href);
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={[
-                    "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
-                    active
-                      ? "bg-blue-600/10 text-blue-400 border border-blue-500/20"
-                      : "text-slate-400 hover:text-white hover:bg-white/5",
-                  ].join(" ")}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{item.name}</span>
-                  {active && <ChevronRight className="ml-auto h-3 w-3 text-blue-400" />}
-                </Link>
-              );
-            })}
 
+            {/* Nav links */}
+            <div className="space-y-1">
+              {NAV_ITEMS.map((item) => {
+                const Icon = item.icon;
+                const active = isActive(item.href);
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={[
+                      "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
+                      active
+                        ? "bg-blue-600/10 text-blue-400 border border-blue-500/20"
+                        : "text-slate-400 hover:text-white hover:bg-white/5",
+                    ].join(" ")}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{item.name}</span>
+                    {active && <ChevronRight className="ml-auto h-3 w-3 text-blue-400" />}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Action buttons */}
+            <div className="mt-6 pt-4 border-t border-white/5">
+              <div className="space-y-2 px-2">
+                <Link
+                  href="/api/download-resume"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 hover:border-white/20 transition-all"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Download Resume
+                </Link>
+                <a
+                  href="/contact"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all"
+                >
+                  <Play className="h-4 w-4 mr-2" />
+                  Contact Me
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
