@@ -117,7 +117,7 @@ export function Navbar() {
             aria-expanded={mobileOpen}
             aria-label="Open mobile menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <Menu className="h-5 w-5" />
           </Button>
         </div>
       </div>
@@ -126,25 +126,27 @@ export function Navbar() {
       {mobileOpen && (
         <div className="md:hidden glass border-b border-white/10">
           <div className="max-w-7xl mx-auto px-4 py-3">
-            {/* Mobile header: Logo + Menu heading + Close button */}
-            <div className="flex items-center justify-between px-2 mb-4 border-b border-white/5 pb-2">
-              <div className="flex items-center gap-2 shrink-0">
-                <Link
-                  href="/"
-                  className="flex items-center gap-2 group"
-                  aria-label="AFIL PM — home"
-                >
-                  <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
-                    AP
-                  </div>
-                  <span className="font-display font-bold text-lg tracking-tight text-white">
-                    AFIL<span className="text-blue-400">PM</span>
-                  </span>
-                </Link>
-              </div>
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            {/* Mobile header: Row 1 — Original AFILPM logo (no close icon) */}
+            <div className="flex items-center gap-2 px-2 shrink-0">
+              <Link
+                href="/"
+                className="flex items-center gap-2 group"
+                aria-label="AFIL PM — home"
+              >
+                <div className="w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs font-bold text-white group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/25">
+                  AP
+                </div>
+                <span className="font-display font-bold text-lg tracking-tight text-white">
+                  AFIL<span className="text-blue-400">PM</span>
+                </span>
+              </Link>
+            </div>
+
+            {/* Mobile header: Row 2 — Menu label circle + Close button */}
+            <div className="flex items-center justify-between px-2 mt-3 border-t border-white/5 pt-2">
+              <div className="flex items-center justify-center w-[55px] h-[55px] rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-xs font-bold text-white shadow-lg shadow-blue-500/25">
                 Menu
-              </span>
+              </div>
               <Button
                 variant="ghost"
                 size="sm"
