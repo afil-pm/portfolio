@@ -1,0 +1,158 @@
+// prisma/schema.prisma
+// Database schema for AFIL PM Portfolio
+// Provider: PostgreSQL (parameterized queries via Prisma => SQL injection protection)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  username  String   @unique
+  passwordHash String @db.Text
+  role      String   @default("admin")
+  isActive  Boolean  @default(true)
+  lastLogin DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(uuid()) @db.Uuid
+  userId       String   @db.Uuid
+  tokenHash    String   @db.Text
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  ipAddress    String?
+  userAgent    String?
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+model Project {
+  id             String   @id @default(uuid()) @db.Uuid
+  title          String
+  slug           String   @unique
+  shortDescription String  @db.Text
+  description    String   @db.Text
+  category       String
+  image          String   @db.Text
+  liveUrl        String?  @db.Text
+  githubUrl      String?  @db.Text
+  technologies   String[] @default([])
+  featured       Boolean  @default(false)
+  order          Int      @default(0)
+  isPublished    Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([category])
+  @@index([slug])
+  @@index([isPublished])
+  @@map("projects")
+}
+
+model Skill {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  category  String
+  icon      String
+  order     Int      @default(0)
+  isPublished Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@map("skills")
+}
+
+model Service {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  description String   @db.Text
+  icon        String
+  order       Int      @default(0)
+  isPublished Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Experience {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  company     String
+  type        String
+  startDate   DateTime
+  endDate     DateTime?
+  present     Boolean  @default(false)
+  description String   @db.Text
+  order       Int      @default(0)
+  isPublished Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("experience")
+}
+
+model CreativeWork {
+  id          String   @id @default(uuid()) @db.Uuid
+  title       String
+  type        String
+  category    String
+  url         String   @db.Text
+  thumbnail   String?  @db.Text
+  duration    String?
+  order       Int      @default(0)
+  isPublished Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([type])
+  @@index([category])
+  @@map("creative_works")
+}
+
+model ContactSubmission {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  status    String   @default("new")
+  ipAddress String?
+  userAgent String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_submissions")
+}
+
+model SocialLink {
+  id        String   @id @default(uuid()) @db.Uuid
+  platform  String
+  url       String   @db.Text
+  icon      String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("social_links")
+}
