@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Navbar } from "@/components/layout/navbar";
 import "./globals.css";
 
 const inter = Inter({
@@ -135,6 +136,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${inter.variable} ${display.variable} ${mono.variable} bg-slate-950 text-slate-100`}>
+        <Navbar />
         {children}
       </body>
     </html>

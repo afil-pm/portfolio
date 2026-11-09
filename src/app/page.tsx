@@ -1,6 +1,5 @@
 // src/app/page.tsx
 import Hero from "@/components/sections/hero";
-import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
 export const metadata = {
@@ -11,7 +10,6 @@ export const metadata = {
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <main className="flex-grow">
         <Hero />
       </main>

@@ -15,7 +15,6 @@ import {
   Video,
   Briefcase,
   Mail,
-  Sparkles,
   ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -110,12 +109,6 @@ export function Navbar() {
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
 
-          {/* CTA on desktop */}
-          <Link href="/projects" className="hidden md:block">
-            <Button variant="brand" size="sm">
-              Explore Work <Sparkles className="ml-1 h-3 w-3" />
-            </Button>
-          </Link>
         </div>
       </div>
 
