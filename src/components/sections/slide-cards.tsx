@@ -151,11 +151,12 @@ export function SlideCards() {
       const isLg = window.innerWidth >= 1024;
       const isSm = window.innerWidth >= 640;
       if (isLg) {
-        setCardStep(520 + 32); // lg:w-[520px] + gap-8 (32px)
+        setCardStep(520 + 24); // lg:w-[520px] + gap-6 (24px)
       } else if (isSm) {
-        setCardStep(460 + 32); // sm:w-[460px] + gap-8 (32px)
+        setCardStep(460 + 24); // sm:w-[460px] + gap-6 (24px)
       } else {
-        setCardStep(window.innerWidth * 0.86 + 24); // 86vw + gap-6 (24px)
+        // Mobile: 85vw card + 16px gap
+        setCardStep(window.innerWidth * 0.85 + 16);
       }
     }
   }, []);
@@ -206,35 +207,35 @@ export function SlideCards() {
 
   return (
     <section
-      className="relative py-16 sm:py-24 md:py-32 overflow-hidden"
+      className="relative py-12 sm:py-24 md:py-32 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Featured Works Carousel"
     >
-      {/* Background Ambient Lighting Glows - smaller on mobile */}
-      <div className="absolute top-1/4 left-[-10%] w-[400px] sm:w-[550px] h-[400px] sm:h-[550px] bg-blue-600/10 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute bottom-1/4 right-[-10%] w-[400px] sm:w-[550px] h-[400px] sm:h-[550px] bg-indigo-600/10 blur-[100px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
+      {/* Background Ambient Lighting Glows */}
+      <div className="absolute top-1/4 left-[-10%] w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-blue-600/10 blur-[80px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 right-[-10%] w-[300px] sm:w-[550px] h-[300px] sm:h-[550px] bg-indigo-600/10 blur-[80px] sm:blur-[150px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Stacked on mobile */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-16">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-8 mb-8 sm:mb-16">
           <div className="flex-1">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1 text-xs font-semibold text-blue-400 tracking-wider uppercase mb-3 sm:mb-4 shadow-[0_0_20px_rgba(59,130,246,0.15)]">
               <Sparkles className="h-3 w-3 text-blue-400 animate-spin" style={{ animationDuration: "8s" }} />
               <span>Featured Works</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight mb-3 sm:mb-4">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight mb-2 sm:mb-4">
               Featured Works & Slide Showcase
             </h2>
 
-            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl">
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-2xl">
               Swipe through flagship web apps, motion graphics, and cinematic productions built with high performance.
             </p>
           </div>
 
-          {/* Navigation Controls: Slide Indicators + Prev/Next Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
+          {/* Navigation Controls */}
+          <div className="flex flex-row items-center justify-between sm:justify-end gap-3 sm:gap-4 shrink-0">
             {/* Slide Index Counter */}
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-400">
               <span className="text-blue-400 font-bold">
@@ -244,33 +245,31 @@ export function SlideCards() {
               <span>{String(filteredCards.length).padStart(2, "0")}</span>
             </div>
 
-            {/* Prev / Next Circular Buttons */}
-            <div className="flex items-center gap-2.5">
+            {/* Prev / Next Buttons */}
+            <div className="flex items-center gap-2">
               <motion.button
-                whileHover={{ scale: 1.1, x: -2 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={prevSlide}
-                className="group relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/10 bg-slate-900/80 hover:bg-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-2xl border border-white/10 bg-slate-900/80 hover:bg-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 active:scale-90"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="h-4 w-4 group-hover:-translate-x-0.5 group-hover:scale-110 transition-transform duration-300" />
+                <ChevronLeft className="h-4 w-4" />
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.1, x: 2 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={nextSlide}
-                className="group relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl border border-white/10 bg-slate-900/80 hover:bg-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-2xl border border-white/10 bg-slate-900/80 hover:bg-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 active:scale-90"
                 aria-label="Next slide"
               >
-                <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:scale-110 transition-transform duration-300" />
+                <ChevronRight className="h-4 w-4" />
               </motion.button>
             </div>
           </div>
         </div>
 
-        {/* Category Filter Pills Bar */}
-        <div className="flex gap-2 overflow-x-auto pb-6 mb-10 sm:mb-14 scrollbar-hide">
+        {/* Category Filter Pills — horizontally scrollable, no clipping */}
+        <div className="flex gap-2 overflow-x-auto pb-4 mb-8 sm:mb-14 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {CATEGORIES.map((cat) => {
             const active = activeCategory === cat;
             return (
@@ -278,7 +277,7 @@ export function SlideCards() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={[
-                  "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all whitespace-nowrap select-none",
+                  "px-3 py-1.5 rounded-xl text-[11px] sm:text-sm font-medium transition-all whitespace-nowrap select-none shrink-0",
                   active
                     ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 border border-blue-400/40"
                     : "border border-white/10 bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20",
@@ -290,8 +289,8 @@ export function SlideCards() {
           })}
         </div>
 
-        {/* Slide Cards Carousel Deck with Smooth Draggable & Animatable Track */}
-        <div ref={containerRef} className="relative overflow-hidden py-4 -my-4">
+        {/* Slide Cards Carousel */}
+        <div ref={containerRef} className="relative overflow-hidden py-2 -my-2">
           <motion.div
             ref={trackRef}
             style={{ touchAction: "pan-y" }}
@@ -302,25 +301,22 @@ export function SlideCards() {
               left: -maxDragLimit,
               right: 0,
             }}
-            dragElastic={0.15}
+            dragElastic={0.12}
             onDragEnd={(_, info) => {
               const dragDistance = info.offset.x;
               const velocity = info.velocity.x;
 
-              // Swiped Left -> Advance to next
               if (dragDistance < -40 || velocity < -280) {
                 if (currentIndex < filteredCards.length - 1) {
                   setCurrentIndex((prev) => prev + 1);
                 } else {
-                  setCurrentIndex(0); // Wrap around smoothly
+                  setCurrentIndex(0);
                 }
-              }
-              // Swiped Right -> Go to previous
-              else if (dragDistance > 40 || velocity > 280) {
+              } else if (dragDistance > 40 || velocity > 280) {
                 if (currentIndex > 0) {
                   setCurrentIndex((prev) => prev - 1);
                 } else {
-                  setCurrentIndex(filteredCards.length - 1); // Wrap around smoothly
+                  setCurrentIndex(filteredCards.length - 1);
                 }
               }
             }}
@@ -336,16 +332,16 @@ export function SlideCards() {
           </motion.div>
         </div>
 
-        {/* Carousel Bottom Indicators & Full Portfolio Link */}
-        <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-white/5">
-          {/* Interactive Dot Bar Indicators */}
+        {/* Bottom: Dot Indicators + CTA */}
+        <div className="mt-8 sm:mt-14 flex flex-col sm:flex-row items-center justify-between gap-5 pt-5 border-t border-white/5">
+          {/* Dot Indicators */}
           <div className="flex items-center gap-2">
             {filteredCards.map((_, dotIndex) => (
               <button
                 key={dotIndex}
                 onClick={() => setCurrentIndex(dotIndex)}
                 className={[
-                  "h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400",
+                  "h-2 rounded-full transition-all duration-300 focus:outline-none",
                   dotIndex === currentIndex
                     ? "w-8 bg-gradient-to-r from-blue-500 to-indigo-500 shadow-md shadow-blue-500/40"
                     : "w-2 bg-white/20 hover:bg-white/40",
@@ -355,15 +351,15 @@ export function SlideCards() {
             ))}
           </div>
 
-          {/* Quick CTA to Full Works with Animated Link Icon */}
-          <div className="flex items-center gap-4">
+          {/* CTA + hint */}
+          <div className="flex items-center gap-3 sm:gap-4">
             <span className="text-[10px] text-slate-500 font-mono hidden sm:inline">
               Swipe or drag to browse &bull; Autoplays on idle
             </span>
 
             <Link
               href="/projects"
-              className="group/btn inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white/5 hover:bg-blue-600/10 border border-white/10 hover:border-blue-400/40 text-xs sm:text-sm font-semibold text-white hover:text-blue-300 transition-all shadow-md"
+              className="group/btn inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/5 hover:bg-blue-600/10 border border-white/10 hover:border-blue-400/40 text-xs sm:text-sm font-semibold text-white hover:text-blue-300 transition-all shadow-md"
             >
               <span>View All Projects</span>
               <span className="w-6 h-6 rounded-xl bg-white/5 group-hover/btn:bg-blue-500 group-hover/btn:text-white group-hover/btn:shadow-[0_0_15px_rgba(59,130,246,0.5)] flex items-center justify-center transition-all duration-300">
@@ -409,7 +405,7 @@ function InteractiveSlideCard({ card, index }: { card: SlideCardItem; index: num
         scale: isHovered ? 1.015 : 1,
       }}
       transition={{ type: "spring", stiffness: 350, damping: 25 }}
-      className="relative w-[88vw] sm:w-[470px] lg:w-[520px] shrink-0 select-none group"
+      className="relative w-[85vw] sm:w-[460px] lg:w-[520px] shrink-0 select-none group"
     >
       {/* Card Outer Shell with Glassmorphism */}
       <div className="relative rounded-[1.75rem] border border-white/10 bg-slate-900/90 backdrop-blur-2xl overflow-hidden shadow-2xl shadow-black/60 transition-all duration-300 group-hover:border-blue-500/40 flex flex-col h-full">
@@ -423,7 +419,7 @@ function InteractiveSlideCard({ card, index }: { card: SlideCardItem; index: num
         />
 
         {/* Top Preview Image Container - Better proportions for mobile */}
-        <div className="relative h-52 sm:h-60 w-full overflow-hidden bg-slate-950 pointer-events-none">
+        <div className="relative h-44 sm:h-60 w-full overflow-hidden bg-slate-950 pointer-events-none">
           <img
             src={card.image}
             alt={card.title}
