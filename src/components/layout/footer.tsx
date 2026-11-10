@@ -12,24 +12,24 @@ const SOCIALS = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-slate-950/80 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-2 md:col-span-4 mb-6">
+      <div className="max-w-7xl mx-auto px-6 py-12 sm:py-16 md:py-24">
+        <div className="grid md:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-16">
+          <div className="col-span-2 md:col-span-4 mb-6 sm:mb-0">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white shadow-lg shadow-blue-500/25">AP</div>
               <span className="font-display font-bold text-lg tracking-tight text-white">
                 AFIL<span className="text-blue-400">PM</span>
               </span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-md">
+            <p className="text-slate-400 text-sm leading-relaxed">
               Full-Stack Web Developer & Motion Graphics Designer building premium
               digital experiences and creative visuals.
             </p>
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-slate-400 mb-6 uppercase tracking-wider">Connect</h4>
-            <div className="flex gap-3">
+            <h4 className="text-xs font-semibold text-slate-400 mb-4 sm:mb-6 uppercase tracking-wider">Connect</h4>
+            <div className="flex gap-2 sm:gap-3">
               {SOCIALS.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-slate-400 mb-6 uppercase tracking-wider">Contact</h4>
+            <h4 className="text-xs font-semibold text-slate-400 mb-4 sm:mb-6 uppercase tracking-wider">Contact</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-slate-500" />
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-slate-400 mb-6 uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-xs font-semibold text-slate-400 mb-4 sm:mb-6 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
               <li><Link href="/skills" className="hover:text-white transition-colors">Skills</Link></li>
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-500">
             &copy; {new Date().getFullYear()} AFIL PM. All rights reserved.
           </p>
