@@ -52,7 +52,7 @@ const SAMPLE_PROJECTS = [
     shortDescription: "Product promotional video with color grading and motion graphics overlays.",
     description: "Professional video editing and color grading for a product launch campaign with animated text overlays and sound design.",
     category: "Video Editing",
-    image: "https://afilpm.vercel.app/images/PromoVideoEdit.png",
+    image: "https://afilpm.vercel.app/images/CinematicProductPromoReel.png",
     liveUrl: undefined,
     githubUrl: undefined,
     technologies: ["Premiere Pro", "After Effects", "DaVinci Resolve"],

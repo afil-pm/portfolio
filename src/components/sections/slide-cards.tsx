@@ -41,7 +41,7 @@ const SLIDE_CARDS: SlideCardItem[] = [
     description:
       "Modern full-stack e-commerce solution featuring Stripe payments, real-time inventory synchronization, sub-100ms API endpoints, and comprehensive admin analytics.",
     category: "Full-Stack",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&q=80",
+    image: "https://afilpm.vercel.app/images/Apex-E-Commerce-Platform.png",
     technologies: ["Next.js 14", "TypeScript", "Prisma", "Stripe", "Tailwind CSS"],
     metrics: "Sub-100ms API • 99.9% Uptime",
     projectUrl: "/projects",
@@ -57,7 +57,7 @@ const SLIDE_CARDS: SlideCardItem[] = [
     description:
       "Interactive data visualization platform with live WebSocket feeds, dynamic chart controls, role-based access, and automated performance reporting.",
     category: "Web Development",
-    image: "https://images.unsplash.com/photo-1460925895917-afbe65ae8364?w=800&q=80",
+    image: "https://afilpm.vercel.app/images/Analytics-dashboard.png",
     technologies: ["React", "TypeScript", "Chart.js", "Firebase", "WebSockets"],
     metrics: "50k+ Events/sec • Live Sync",
     projectUrl: "/projects",
@@ -73,7 +73,7 @@ const SLIDE_CARDS: SlideCardItem[] = [
     description:
       "Dynamic 3D title animation and cinematic brand teaser with custom sound design, volumetric lighting, fluid simulations, and kinetic typography.",
     category: "Motion Graphics",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
+    image: "https://afilpm.vercel.app/images/Cyberpunk3DBrandMotion.png",
     technologies: ["After Effects", "Cinema 4D", "Premiere Pro", "Octane Render"],
     metrics: "4K 60FPS • Dynamic 3D VFX",
     projectUrl: "/projects",
@@ -88,7 +88,7 @@ const SLIDE_CARDS: SlideCardItem[] = [
     description:
       "High-end commercial promo post-production featuring precision color grading in DaVinci Resolve, seamless motion tracking, and kinetic typography overlays.",
     category: "Video Editing",
-    image: "https://images.unsplash.com/photo-1536440136629-8bb9012dca79?w=800&q=80",
+    image: "https://afilpm.vercel.app/images/CinematicProductPromoReel.png",
     technologies: ["Premiere Pro", "DaVinci Resolve", "After Effects", "Color Grading"],
     metrics: "Dolby Atmos • Rec.709 Master",
     projectUrl: "/projects",
