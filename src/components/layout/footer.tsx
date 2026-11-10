@@ -36,10 +36,10 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all"
+                  className="group w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/15 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:-translate-y-1 transition-all duration-300"
                   aria-label={label}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4 w-4 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" />
                 </a>
               ))}
             </div>

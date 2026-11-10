@@ -2,7 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Download,
@@ -13,141 +14,310 @@ import {
   Github,
   Instagram,
   Linkedin,
+  Code,
+  Layers,
+  Video,
 } from "lucide-react";
 
+const ROLES = [
+  "Full-Stack Developer",
+  "Motion Graphics Designer",
+  "UI/UX Designer",
+  "Cybersecurity Enthusiast",
+];
+
 export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROLES.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden px-6 pt-20">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-16 sm:pb-20">
       {/* Background layers */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
       
-      {/* Ambient glow blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 blur-[120px] rounded-full -z-10 animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 blur-[100px] rounded-full -z-10 animate-pulse" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-[20%] right-[15%] w-[400px] h-[400px] bg-purple-600/8 blur-[90px] rounded-full -z-10" style={{ animationDelay: "4s" }} />
+      {/* Ambient glow blobs - fluid scaling to avoid overflow */}
+      <div className="absolute top-[-5%] left-[-10%] w-[320px] sm:w-[500px] lg:w-[600px] h-[320px] sm:h-[500px] lg:h-[600px] max-w-[85vw] max-h-[85vw] bg-blue-600/10 blur-[90px] sm:blur-[120px] rounded-full -z-10 animate-pulse pointer-events-none" />
+      <div className="absolute bottom-[-5%] right-[-10%] w-[280px] sm:w-[450px] lg:w-[500px] h-[280px] sm:h-[450px] lg:h-[500px] max-w-[80vw] max-h-[80vw] bg-emerald-500/10 blur-[80px] sm:blur-[100px] rounded-full -z-10 animate-pulse pointer-events-none" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-[20%] right-[10%] w-[220px] sm:w-[350px] lg:w-[400px] h-[220px] sm:h-[350px] lg:h-[400px] max-w-[70vw] max-h-[70vw] bg-purple-600/8 blur-[70px] sm:blur-[90px] rounded-full -z-10 pointer-events-none" style={{ animationDelay: "4s" }} />
 
       {/* Grid pattern subtle */}
-      <div className="absolute inset-0 z-0 [background-image:linear-gradient(to_right,#1e293b1a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b1a_1px,transparent_1px)] [background-size:48px_48px] opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 z-0 [background-image:linear-gradient(to_right,#1e293b1a_1px,transparent_1px),linear-gradient(to_bottom,#1e293b1a_1px,transparent_1px)] [background-size:32px_32px] sm:[background-size:48px_48px] opacity-30 pointer-events-none" />
 
-      <div className="relative z-10 max-w-6xl mx-auto text-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto text-center flex flex-col items-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-1.5 text-[11px] font-medium text-blue-400/90 uppercase tracking-widest backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.15)]">
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-          Available for freelance &bull; Open to collaboration
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 sm:px-5 py-1.5 text-[10px] sm:text-[11px] font-medium text-blue-400/90 uppercase tracking-widest backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.15)] max-w-[90vw] truncate">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse shrink-0"></span>
+          <span className="truncate">Available for freelance &bull; Open to collaboration</span>
         </div>
 
-        {/* Name */}
-        <h1 className="mt-8 mb-2 text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-tight">
+        {/* Name with Fluid Typography */}
+        <h1 className="mt-6 sm:mt-8 mb-2 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-tight">
           AFIL<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-500">PM</span>
         </h1>
 
         {/* Role */}
-        <h2 className="mt-3 text-xl md:text-2xl text-slate-400 font-medium tracking-tight">
+        <h2 className="mt-2 sm:mt-3 text-lg sm:text-xl md:text-2xl text-slate-400 font-medium tracking-tight px-2">
           Full-Stack Web Developer &amp; Motion Graphics Designer
         </h2>
 
         {/* Subtitle */}
-        <p className="mt-6 max-w-2xl mx-auto text-slate-300 text-base md:text-lg leading-relaxed">
+        <p className="mt-4 sm:mt-6 max-w-2xl mx-auto text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed px-2">
           I build secure, performant web applications and craft compelling motion
           graphics that bring brands to life — blending technical depth with
           creative storytelling.
         </p>
 
-        {/* Animated roles (typing effect - deliberate, starts immediately) */}
-        <div className="mt-10 inline-block">
-          <span className="relative text-2xl md:text-3xl font-semibold text-white">
+        {/* Animated dynamic cycling roles with fluid typography and reserved height */}
+        <div className="mt-6 sm:mt-10 h-10 sm:h-12 flex items-center justify-center overflow-hidden w-full px-2">
+          <AnimatePresence mode="wait">
             <motion.span
-              className="relative inline-block text-white"
-              animate={{
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+              key={roleIndex}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="text-base sm:text-2xl md:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 text-center"
             >
-              {[
-                "Full-Stack Developer.",
-                "Motion Graphics Designer.",
-                "UI/UX Designer.",
-                "Security-Focused Engineer.",
-              ].map((role, i) => (
-                <span
-                  key={i}
-                  className="absolute left-0 top-0 text-white"
-                  style={{ opacity: 0 }}
-                >
-                  {role}
-                </span>
-              ))}
+              {ROLES[roleIndex]}
             </motion.span>
-          </span>
+          </AnimatePresence>
         </div>
 
-        {/* CTA Buttons */}
-        <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-5">
+        {/* CTA Buttons - adaptive stack on mobile, inline on desktop */}
+        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-5 w-full max-w-xs sm:max-w-none">
           <Link
             href="/projects"
-            className="group relative px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:-translate-y-2 hover:shadow-blue-600/50 active:-translate-y-0.5 active:shadow-blue-600/20 transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
+            className="group relative px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:-translate-y-1.5 hover:shadow-blue-600/50 active:translate-y-0 transition-all duration-300 ease-out flex items-center justify-center gap-2.5 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              Explore My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              Explore My Work
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1.5 group-hover:scale-125 transition-all duration-300" />
             </span>
-            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </Link>
           <Link
             href="/api/download-resume"
-            className="group relative px-6 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm shadow-sm hover:-translate-y-2 hover:shadow-lg hover:shadow-white/10 hover:border-white/20 active:-translate-y-0.5 active:shadow-none transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
+            className="group relative px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:shadow-white/10 hover:border-white/25 active:translate-y-0 transition-all duration-300 ease-out flex items-center justify-center gap-2.5 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <Download className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /> Download Resume
+              <Download className="h-4 w-4 group-hover:-translate-y-1 group-hover:scale-125 group-hover:text-blue-400 transition-all duration-300" />
+              Download Resume
             </span>
-            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </Link>
           <a
             href="/contact"
-            className="group relative px-6 py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm shadow-sm hover:-translate-y-2 hover:shadow-lg hover:shadow-white/10 hover:border-white/20 active:-translate-y-0.5 active:shadow-none transition-all duration-300 ease-out flex items-center gap-2 overflow-hidden"
+            className="group relative px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl border border-white/10 bg-white/5 text-white font-semibold text-sm shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:shadow-white/10 hover:border-white/25 active:translate-y-0 transition-all duration-300 ease-out flex items-center justify-center gap-2.5 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
-              <Play className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" /> Contact Me
+              <Play className="h-4 w-4 group-hover:rotate-12 group-hover:scale-125 group-hover:text-indigo-400 transition-all duration-300 fill-current" />
+              Contact Me
             </span>
-            <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </a>
         </div>
 
-        {/* Social links */}
-        <div className="mt-20 flex justify-center gap-6 opacity-50">
-          <a href="https://github.com/afil-pm" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all" aria-label="GitHub">
-            <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+        {/* Social links with responsive spacing */}
+        <div className="mt-10 sm:mt-14 flex justify-center gap-3 sm:gap-5 md:gap-6 opacity-90 hover:opacity-100 transition-opacity">
+          <a
+            href="https://github.com/afil-pm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative h-11 w-11 sm:h-12 sm:w-12 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-white hover:border-white/50 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:-translate-y-1.5 transition-all duration-300"
+            aria-label="GitHub"
+          >
+            <Github className="h-5 w-5 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none text-[10px] font-mono bg-slate-900 border border-white/20 text-white px-2 py-0.5 rounded shadow-xl whitespace-nowrap">
               GitHub
             </span>
           </a>
-          <a href="https://instagram.com/afil_pm" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-purple-400/50 hover:bg-purple-500/10 transition-all" aria-label="Instagram">
-            <Instagram className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+          <a
+            href="https://instagram.com/afil_pm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative h-11 w-11 sm:h-12 sm:w-12 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-pink-300 hover:border-pink-500/50 hover:bg-pink-500/15 hover:shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:-translate-y-1.5 transition-all duration-300"
+            aria-label="Instagram"
+          >
+            <Instagram className="h-5 w-5 group-hover:scale-125 group-hover:-rotate-6 transition-all duration-300" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none text-[10px] font-mono bg-slate-900 border border-pink-500/30 text-white px-2 py-0.5 rounded shadow-xl whitespace-nowrap">
               Instagram
             </span>
           </a>
-          <a href="https://linkedin.com/in/afil-pm" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all" aria-label="LinkedIn">
-            <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+          <a
+            href="https://linkedin.com/in/afil-pm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative h-11 w-11 sm:h-12 sm:w-12 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-blue-300 hover:border-blue-500/50 hover:bg-blue-500/15 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] hover:-translate-y-1.5 transition-all duration-300"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-5 w-5 group-hover:scale-125 group-hover:rotate-6 transition-all duration-300" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none text-[10px] font-mono bg-slate-900 border border-blue-500/30 text-white px-2 py-0.5 rounded shadow-xl whitespace-nowrap">
               LinkedIn
             </span>
           </a>
-          <a href="https://wa.me/917561820814" target="_blank" rel="noopener noreferrer" className="group relative h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-slate-400 hover:text-white hover:border-emerald-400/50 hover:bg-emerald-500/10 transition-all" aria-label="WhatsApp">
-            <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[10px] bg-white/90 text-slate-900 px-2 py-1 rounded whitespace-nowrap">
+          <a
+            href="https://wa.me/917561820814"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative h-11 w-11 sm:h-12 sm:w-12 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center text-slate-300 hover:text-emerald-300 hover:border-emerald-500/50 hover:bg-emerald-500/15 hover:shadow-[0_0_25px_rgba(16,185,129,0.4)] hover:-translate-y-1.5 transition-all duration-300"
+            aria-label="WhatsApp"
+          >
+            <Phone className="h-5 w-5 group-hover:scale-125 group-hover:-rotate-6 transition-all duration-300" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none text-[10px] font-mono bg-slate-900 border border-emerald-500/30 text-white px-2 py-0.5 rounded shadow-xl whitespace-nowrap">
               WhatsApp
             </span>
           </a>
         </div>
 
-        {/* Scroll hint */}
-        <div className="mt-24 flex items-center justify-center">
-          <div className="w-1 h-10 rounded-full bg-white/20 mx-auto animate-[bounce_2s_infinite]"></div>
-        </div>
+        {/* Featured Work Cards */}
+        <section className="mt-24 sm:mt-32 relative">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 sm:mb-16">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 tracking-tight">
+                  Featured Work
+                </h2>
+                <p className="text-slate-400 text-sm sm:text-base">
+                  Selected projects across web development, motion graphics, and UI/UX design.
+                </p>
+              </div>
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-slate-300 hover:bg-white/10 hover:border-white/20 transition-colors group"
+              >
+                View All <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="group relative rounded-2xl border border-white/5 bg-white/5 overflow-hidden hover:border-white/20 hover:bg-white/10 transition-all duration-400"
+              >
+                <div className="relative h-48 overflow-hidden bg-slate-900">
+                  <img
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&q=80"
+                    alt="E-Commerce Platform"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4">
+                    <span className="text-sm font-semibold text-white">View project details</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] uppercase tracking-wider text-blue-400 font-bold px-2 py-1 rounded border border-blue-500/20 bg-blue-500/5">
+                      Full-Stack Applications
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    E-Commerce Platform
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      Next.js
+                    </span>
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      Stripe
+                    </span>
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      Tailwind
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="group relative rounded-2xl border border-white/5 bg-white/5 overflow-hidden hover:border-white/20 hover:bg-white/10 transition-all duration-400"
+              >
+                <div className="relative h-48 overflow-hidden bg-slate-900">
+                  <img
+                    src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80"
+                    alt="Brand Identity Animation"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4">
+                    <span className="text-sm font-semibold text-white">View project details</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] uppercase tracking-wider text-purple-400 font-bold px-2 py-1 rounded border border-purple-500/20 bg-purple-500/5">
+                      Motion Graphics
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    Brand Identity Animation
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      After Effects
+                    </span>
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      Illustrator
+                    </span>
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      Premiere Pro
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="group relative rounded-2xl border border-white/5 bg-white/5 overflow-hidden hover:border-white/20 hover:bg-white/10 transition-all duration-400"
+              >
+                <div className="relative h-48 overflow-hidden bg-slate-900">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afbe65ae8364?w=800&q=80"
+                    alt="SaaS Dashboard"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4">
+                    <span className="text-sm font-semibold text-white">View project details</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-bold px-2 py-1 rounded border border-emerald-500/20 bg-emerald-500/5">
+                      Web Development
+                    </span>
+                  </div>
+                  <h3 className="text-sm font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    SaaS Dashboard
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      React
+                    </span>
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      TypeScript
+                    </span>
+                    <span className="text-[9px] uppercase tracking-wider text-slate-500 font-medium px-1.5 py-0.5 rounded border border-white/5 bg-white/5">
+                      Chart.js
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* JSON-LD Structured Data for SEO */}
